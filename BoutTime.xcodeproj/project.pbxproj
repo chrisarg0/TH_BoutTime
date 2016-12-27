@@ -12,6 +12,10 @@
 		012B29CB1E12B115008E917A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012B29C91E12B115008E917A /* Main.storyboard */; };
 		012B29CD1E12B115008E917A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012B29CC1E12B115008E917A /* Assets.xcassets */; };
 		012B29D01E12B115008E917A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012B29CE1E12B115008E917A /* LaunchScreen.storyboard */; };
+		012B29D81E12B58E008E917A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012B29D71E12B58E008E917A /* Events.swift */; };
+		012B29DB1E12D31A008E917A /* IncorrectBuzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 012B29D91E12D31A008E917A /* IncorrectBuzz.wav */; };
+		012B29DC1E12D31A008E917A /* CorrectDing.wav in Resources */ = {isa = PBXBuildFile; fileRef = 012B29DA1E12D31A008E917A /* CorrectDing.wav */; };
+		012B29DE1E12D346008E917A /* CompletedGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012B29DD1E12D346008E917A /* CompletedGameVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		012B29CC1E12B115008E917A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		012B29CF1E12B115008E917A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		012B29D11E12B115008E917A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		012B29D71E12B58E008E917A /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		012B29D91E12D31A008E917A /* IncorrectBuzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IncorrectBuzz.wav; sourceTree = "<group>"; };
+		012B29DA1E12D31A008E917A /* CorrectDing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectDing.wav; sourceTree = "<group>"; };
+		012B29DD1E12D346008E917A /* CompletedGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedGameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,42 @@
 		012B29C41E12B115008E917A /* BoutTime */ = {
 			isa = PBXGroup;
 			children = (
+				012B29E11E12D38C008E917A /* Resources */,
+				012B29E01E12D384008E917A /* ViewControllers */,
+				012B29DF1E12D373008E917A /* Model */,
 				012B29C51E12B115008E917A /* AppDelegate.swift */,
-				012B29C71E12B115008E917A /* ViewController.swift */,
 				012B29C91E12B115008E917A /* Main.storyboard */,
-				012B29CC1E12B115008E917A /* Assets.xcassets */,
 				012B29CE1E12B115008E917A /* LaunchScreen.storyboard */,
-				012B29D11E12B115008E917A /* Info.plist */,
 			);
 			path = BoutTime;
+			sourceTree = "<group>";
+		};
+		012B29DF1E12D373008E917A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				012B29D71E12B58E008E917A /* Events.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		012B29E01E12D384008E917A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				012B29C71E12B115008E917A /* ViewController.swift */,
+				012B29DD1E12D346008E917A /* CompletedGameVC.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		012B29E11E12D38C008E917A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				012B29D91E12D31A008E917A /* IncorrectBuzz.wav */,
+				012B29DA1E12D31A008E917A /* CorrectDing.wav */,
+				012B29D11E12B115008E917A /* Info.plist */,
+				012B29CC1E12B115008E917A /* Assets.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +160,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012B29DC1E12D31A008E917A /* CorrectDing.wav in Resources */,
 				012B29D01E12B115008E917A /* LaunchScreen.storyboard in Resources */,
+				012B29DB1E12D31A008E917A /* IncorrectBuzz.wav in Resources */,
 				012B29CD1E12B115008E917A /* Assets.xcassets in Resources */,
 				012B29CB1E12B115008E917A /* Main.storyboard in Resources */,
 			);
@@ -137,6 +175,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012B29DE1E12D346008E917A /* CompletedGameVC.swift in Sources */,
+				012B29D81E12B58E008E917A /* Events.swift in Sources */,
 				012B29C81E12B115008E917A /* ViewController.swift in Sources */,
 				012B29C61E12B115008E917A /* AppDelegate.swift in Sources */,
 			);
