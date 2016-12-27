@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //Starts Game
-        showAlert("Place the Presidents in the order in which they served. The oldest at the top & the most recent at the bottom.")
+        showAlert(title: "Not sure what I'm going to do with this yet...🤔")
     }
     
     //Shake motion code
