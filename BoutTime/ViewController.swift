@@ -35,9 +35,9 @@ class ViewController: UIViewController {
     var roundKeeper = 1
     var allottedTime = 60
     var timer: Timer?
-    var eventQuestions: [Events] = []
-    var currentRound: [Events] = []
-    var nextRound: [Events] = []
+    var eventQuestions: [Event] = []
+    var currentRound: [Event] = []
+    var nextRound: [Event] = []
     
     
     override func viewDidLoad() {
@@ -154,12 +154,12 @@ class ViewController: UIViewController {
         if currentRound == answer {
             // Add 1 point for given round
             gameScore += 1
-            nextRoundBtn.setImage(UIImage(named: "next_round_success.png"), forState: UIControlState.Normal)
-            playSound("CorrectDing.wav")
+            nextRoundBtn.setImage(UIImage(named: "next_round_success.png"), for: UIControlState.normal)
+            playSound(file: "CorrectDing.wav")
         } else {
             // Let the user know they are wrong! Wrong! WRONG!
-            playSound("IncorrectBuzz.wav")
-            nextRoundBtn.setImage(UIImage(named: "next_round_fail.png"), forState: UIControlState.Normal)
+            playSound(file: "IncorrectBuzz.wav")
+            nextRoundBtn.setImage(UIImage(named: "next_round_fail.png"), for: UIControlState.normal)
         }
         countDown = 60
         endRound()
