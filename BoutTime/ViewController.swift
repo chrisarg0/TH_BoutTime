@@ -26,7 +26,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var countDown: UILabel!
     @IBOutlet weak var nextRoundBtn: UIButton!
     @IBOutlet weak var shakeToComplete: UILabel!
-    @IBOutlet weak var currentRound: UILabel!
+    
+    // Event Cards
+    @IBOutlet weak var event1Card: UIView!
+    @IBOutlet weak var event2Card: UIView!
+    @IBOutlet weak var event3Card: UIView!
+    @IBOutlet weak var event4Card: UIView!
 
 
     // global variables
@@ -42,34 +47,48 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // create corner radius for event cards
+        event1Card.layer.masksToBounds = true
+        event1Card.layer.cornerRadius = self.event1Card.frame.width/10.0
+        
+        event2Card.layer.masksToBounds = true
+        event2Card.layer.cornerRadius = self.event2Card.frame.width/10.0
+        
+        event3Card.layer.masksToBounds = true
+        event3Card.layer.cornerRadius = self.event3Card.frame.width/10.0
+        
+        event4Card.layer.masksToBounds = true
+        event4Card.layer.cornerRadius = self.event4Card.frame.width/10.0
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Starts Game
+        //Begin Game
         showAlert(title: "Not sure what I'm going to do with this yet...🤔")
     }
     
-    //Shake motion code
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
+//    //Shake motion code
+//    func canBecomeFirstResponder() -> Bool {
+//        return true
+//    }
+//    
+//    func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+//        if motion == .motionShake {
+//            checkAnswer(Useranswer: currentRound)
+//        }
+//    }
+//    
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//        if segue.identifier == "gameOver" {
+//            let svg = segue.destinationViewController as! CompletedGameVC
+//            
+//            svg.endGameScore = "\(score)/6"
+//        }
+//    }
     
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .motionShake {
-            checkAnswer(Useranswer: currentRound)
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "gameOver" {
-            let svg = segue.destinationViewController as! EndGameController
-            
-            svg.endGameScore = "\(score)/6"
-        }
-    }
-    
-    // Get 24 random questions from the presidentsList Array located in the HistoricalEvent.swift file
+    // Randomizes facts
     func startGame() {
         
         shuffle()
@@ -80,19 +99,18 @@ class ViewController: UIViewController {
     }
     
     func startRound() {
-        // Starts a new round by selecting the first four questions from gameEvents
+        // Starts new round
         currentRound.text = "Round: \(roundKeeper)"
         if roundKeeper == 7 {
             endGame()
             return
         }
         
-        //Setting timer
+        //Set timer
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.startTimer), userInfo: nil, repeats: true)
         
         for i in 0...3 {
             currentRound.append(eventQuestions[i])
-            //set the UITextView to each event
         }
         eventOne.text = currentRound[0].description
         eventTwo.text = currentRound[1].description
@@ -121,7 +139,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //This checks to see what button was pushed to determine what elements in the array need to be switched and then updates the lables
+    //Based on sender, this action will update card labels accordingly
     @IBAction func upOrDown(sender: AnyObject) {
         switch sender.tag {
         case 1:
@@ -142,22 +160,20 @@ class ViewController: UIViewController {
         updateEventLables()
     }
     
-    //Takes the users answer then shorts it. If the user answer matches the sorted answer, the user is awarded one point for each round.
-    func checkAnswer(Useranswer: [Events]) {
+    func checkAnswer(Useranswer: [Event]) {
         
         timer!.invalidate()
         resetCounterLabel()
         roundKeeper += 1
         //sort users answer. In short we are putting all the events in order
-        let answer = Useranswer.sort{$0.date < $1.date}
+        let answer = Useranswer.sorted{$0.date < $1.date}
         
         if currentRound == answer {
-            // Add 1 point for given round
+            // Award 1 point
             gameScore += 1
             nextRoundBtn.setImage(UIImage(named: "next_round_success.png"), for: UIControlState.normal)
             playSound(file: "CorrectDing.wav")
         } else {
-            // Let the user know they are wrong! Wrong! WRONG!
             playSound(file: "IncorrectBuzz.wav")
             nextRoundBtn.setImage(UIImage(named: "next_round_fail.png"), for: UIControlState.normal)
         }
@@ -175,10 +191,10 @@ class ViewController: UIViewController {
         eventFour.text = currentRound[3].description
     }
     
-    //Shuffles the array so that each game is distinctive
+    //Ramdomizes questions
     func shuffle() {
         
-        nextGame = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(presidentsList) as! [HistoricalEvent]
+        endGame = GKRandomSource.sharedRandom().arrayByShufflingObjectsInArray(eventList) as! [Event]
         
     }
     
@@ -214,7 +230,7 @@ class ViewController: UIViewController {
     //Calls check answer when user shakes the device
     func userShakesiPhone(){
         
-        checkAnswer(currentRound)
+        checkAnswer(Useranswer: currentRound)
     }
     
     //Plays soundEffects for correct or wrong answers by taking a string as a paramater we can pass in the sound we need.
